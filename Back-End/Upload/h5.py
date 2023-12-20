@@ -8,6 +8,9 @@ from tensorflow.keras.applications.inception_v3 import preprocess_input
 import numpy as np
 import mysql.connector
 from mysql.connector import Error
+from dotenv import load_dotenv
+load_dotenv()
+
 
 model = load_model('Model.h5')
 def prepare_image(img_path):
@@ -21,10 +24,10 @@ def create_connection():
     connection = None
     try:
         connection = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database="catora"
+            host=os.getenv("HOST"),
+            user=os.getenv("USER"),
+            password=os.getenv("PASSWORD"),
+            database=os.getenv("DATABASE")
         )
         print("Connected to MySQL database!")
     except Error as e:
