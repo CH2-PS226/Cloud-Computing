@@ -2,7 +2,7 @@
 
 API for Catora application
 
-The documentation can be seen here: https://documenter.getpostman.com/view/27529981/2s93m1bQp4
+The documentation can be seen here: https://documenter.getpostman.com/view/30042250/2s9YkoegsV
 
 The APi is built with express.js with MySQL as the main database. The API is deployed using Cloud Build with App Engine Google Cloud Platform
 
