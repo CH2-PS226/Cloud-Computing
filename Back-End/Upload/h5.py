@@ -37,7 +37,7 @@ def create_connection():
 
 app = Flask(__name__)
 
-upload_dir = os.path.join(os.getcwd(), 'Art-Here')
+upload_dir = os.path.join(os.getcwd(), '../../images/')
 os.makedirs(upload_dir, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = upload_dir
 

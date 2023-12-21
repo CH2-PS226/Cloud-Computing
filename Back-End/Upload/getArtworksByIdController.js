@@ -3,15 +3,14 @@ const path = require('path');
 const router = express.Router();
 const db = require('../connection');
 const { resolve } = require('url');
-require("dotenv").config();
 
-
-router.get('/artworks', (req, res) => {
+router.get('/artworks/:user_id', (req, res) => {
+  const { user_id } = req.params;
   const selectQuery = `
-    SELECT * FROM artworks
+    SELECT * FROM artworks WHERE user_id = ?
   `;
 
-  db.query(selectQuery, (error, results) => {
+  db.query(selectQuery, [user_id], (error, results) => {
     if (error) {
       console.error('Error fetching artworks:', error);
       return res.status(500).json({ error: 'Internal Server Error' });
@@ -24,7 +23,7 @@ router.get('/artworks', (req, res) => {
       return {
         ...artwork,
         image_url: resolvedImageUrl,
-        id: artwork.id
+        id: artwork.id || null,
       };
     });
 

@@ -2,3 +2,7 @@ node_modules/
 *.h5
 .vs/
 .env
+
+*.png
+*.jpg
+*.jpeg

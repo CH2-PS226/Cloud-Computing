@@ -3,13 +3,24 @@ const path = require('path');
 const router = express.Router();
 const db = require('../connection');
 const { resolve } = require('url');
-require("dotenv").config();
 
-
-router.get('/artworks', (req, res) => {
-  const selectQuery = `
-    SELECT * FROM artworks
+router.get('/search', (req, res) => {
+  const { title, description, tags } = req.query;
+  let selectQuery = `
+    SELECT * FROM artworks WHERE 1
   `;
+
+  if (title) {
+    selectQuery += ` AND title LIKE '%${title}%'`;
+  }
+
+  if (description) {
+    selectQuery += ` AND description LIKE '%${description}%'`;
+  }
+
+  if (tags) {
+    selectQuery += ` AND tags LIKE '%${tags}%'`;
+  }
 
   db.query(selectQuery, (error, results) => {
     if (error) {
@@ -24,7 +35,7 @@ router.get('/artworks', (req, res) => {
       return {
         ...artwork,
         image_url: resolvedImageUrl,
-        id: artwork.id
+        id: artwork.id || null,
       };
     });
 
