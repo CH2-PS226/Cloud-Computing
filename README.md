@@ -23,6 +23,10 @@ $ cd .\Cloud-Computing\
 
 #Import The Database
 
+```
+$ catora.sql
+```
+
 
 #Configure Your .env
 
